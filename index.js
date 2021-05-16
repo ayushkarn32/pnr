@@ -34,8 +34,9 @@ app.get('/', (req, res) => {
     const min=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.train-route > div:nth-child(3) > span:nth-child(3)").text().replace(/\n/g, '').trim();
     const duration=hr + " : "+ min; 
     const day=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.boarding-detls > div:nth-child(1) > p.pnr-bold-txt").text();
-   
+    // #status > div:nth-child(1)
     const number_of_passenger=$("#status").children().length;
+
     let count=1;
     let passenger_full=[];
     let forbook,forcur="";
@@ -59,3 +60,5 @@ app.get('/', (req, res) => {
   })
 
 })
+
+  app.listen(3000);
