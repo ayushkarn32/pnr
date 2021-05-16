@@ -1,0 +1,21 @@
+{
+  "name": "pnr-status",
+  "version": "1.0.0",
+  "description": "Get current pnr status",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "keywords": [
+    "pnr",
+    "pnr status"
+  ],
+  "author": "github.com/ayushkarn32",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.6",
+    "express": "^4.17.1",
+    "express-title": "^0.1.0",
+    "request": "^2.88.2"
+  }
+}
