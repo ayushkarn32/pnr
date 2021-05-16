@@ -4,7 +4,7 @@
   "description": "Get current pnr status",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "start": "node index.js"
   },
   "keywords": [
     "pnr",
