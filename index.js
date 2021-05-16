@@ -34,11 +34,10 @@ app.get('/', (req, res) => {
     const min=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.train-route > div:nth-child(3) > span:nth-child(3)").text().replace(/\n/g, '').trim();
     const duration=hr + " : "+ min; 
     const day=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.boarding-detls > div:nth-child(1) > p.pnr-bold-txt").text();
-    // #status > div:nth-child(1)
+   
     const number_of_passenger=$("#status").children().length;
-
     let count=1;
-    let pass=[];
+    let passenger_full=[];
     let forbook,forcur="";
     for(let i=1;i<number_of_passenger-1;i++)
     {
@@ -47,11 +46,10 @@ app.get('/', (req, res) => {
       forcur="#status > div:nth-child("+parseInt(i+1)+") > div:nth-child(2) > p"
       let curr_status=$(forcur).text().replace(/\n/g, '').trim();
       let detail={passenger:"passenger"+count,booking_status:book_status,current_status:curr_status}
-      pass.push(detail)
-      count++
+      passenger_full.push(detail)
     }
 
-    const data=[status,{pnr,train,current_status,chart_prepared,from,boarding_time,to,arrival_time,duration,day,total_pass:number_of_passenger-2,pass}]
+    const data=[status,{pnr,train,current_status,chart_prepared,from,boarding_time,to,arrival_time,duration,day,total_passenger:number_of_passenger-2,passenger_full}]
     res.status(200).send(data)
   }
   else{
@@ -61,5 +59,3 @@ app.get('/', (req, res) => {
   })
 
 })
-
-  app.listen(3000);
