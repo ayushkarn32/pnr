@@ -19,8 +19,12 @@ app.get('/', (req, res) => {
     const pnr=req.params.pnr;
     request(`https://www.railyatri.in/pnr-status/${pnr}`,(error,response,html)=>{
     const $ = cheerio.load(html);
+    const failed=$("#status_not_fetched").length;
     const status=200;
+    if(!failed)
+    {
     const chart_prepared=$("#status-chart > div > div > div.col-xs-3 > p.chart-status-txt").text();
+    const train=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.col-xs-12.train-info > a > p").text().trim();
     const from=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.train-route > div:nth-child(1) > p.pnr-bold-txt").text().replace(/\n/g, '').trim();
     const current_status=$("#status-chart > div > div > div:nth-child(2) > p.pnr-bold-txt").text().replace(/\n/g, '').trim();
     const boarding_time=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.train-route > div:nth-child(1) > p:nth-child(3)").text().replace(/\n/g, '').trim();
@@ -43,9 +47,16 @@ app.get('/', (req, res) => {
       pass.push(detail)
       count++
     }
-    const data=[status,{pnr,current_status,chart_prepared,from,boarding_time,to,arrival_time,duration,day,total_pass:number_of_passenger-2,pass,count}]
-    res.send(data)
+
+    const data=[status,{pnr,train,current_status,chart_prepared,from,boarding_time,to,arrival_time,duration,day,total_pass:number_of_passenger-2,pass,count}]
+    res.status(200).send(data)
+  }
+  else{
+    const not_recieved={status:400,message:"Sorry the Pnr is flushed or currently unavailable due to some error"}
+    res.status(400).send(not_recieved);
+  }
   })
+
 })
 
-  app.listen(process.env.PORT||3000);
+  app.listen(3000);
