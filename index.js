@@ -39,16 +39,19 @@ app.get('/', (req, res) => {
 
     let count=1;
     let pass=[];
+    let forbook,forcur="";
     for(let i=1;i<number_of_passenger-1;i++)
     {
-      let book_status=$("#status > div:nth-child(2) > div:nth-child(1) > p").text().replace(/\n/g, '').trim();
-      let curr_status=$("#status > div:nth-child(2) > div:nth-child(2) > p").text().replace(/\n/g, '').trim();
+      forbook="#status > div:nth-child("+parseInt(i+1)+") > div:nth-child(1) > p"
+      let book_status=$(forbook).text().replace(/\n/g, '').trim();
+      forcur="#status > div:nth-child("+parseInt(i+1)+") > div:nth-child(2) > p"
+      let curr_status=$(forcur).text().replace(/\n/g, '').trim();
       let detail={passenger:"passenger"+count,booking_status:book_status,current_status:curr_status}
       pass.push(detail)
       count++
     }
 
-    const data=[status,{pnr,train,current_status,chart_prepared,from,boarding_time,to,arrival_time,duration,day,total_pass:number_of_passenger-2,pass,count}]
+    const data=[status,{pnr,train,current_status,chart_prepared,from,boarding_time,to,arrival_time,duration,day,total_pass:number_of_passenger-2,pass}]
     res.status(200).send(data)
   }
   else{
@@ -59,4 +62,4 @@ app.get('/', (req, res) => {
 
 })
 
-app.listen(process.env.PORT||3000);
+  app.listen(3000);
