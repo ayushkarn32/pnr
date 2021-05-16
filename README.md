@@ -1,0 +1,2 @@
+# pnr
+get pnr status
