@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
     if(!failed)
     {
     const chart_prepared=$("#status-chart > div > div > div.col-xs-3 > p.chart-status-txt").text();
-    const train=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.col-xs-12.train-info > a > p").text().trim();
+    const train=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.col-xs-12.train-info > a > p").text().replace(/\n/g, '').trim();
     const from=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.train-route > div:nth-child(1) > p.pnr-bold-txt").text().replace(/\n/g, '').trim();
     const current_status=$("#status-chart > div > div > div:nth-child(2) > p.pnr-bold-txt").text().replace(/\n/g, '').trim();
     const boarding_time=$("#homepage-main-container > div.row > div.container.no-pad > div.pnr-search-result-blk > div.pnr-search-result-info > div > div.train-route > div:nth-child(1) > p:nth-child(3)").text().replace(/\n/g, '').trim();
