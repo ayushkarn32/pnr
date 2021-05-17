@@ -9,7 +9,7 @@ const app=express();
 app.get('/', (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-    res.status(200).send("please use the url as  https://https://i-pnr.herokuapp.com/pnrnumber");
+    res.status(200).send("please use the url as  https://i-pnr.herokuapp.com/pnrnumber");
   })
 
   
